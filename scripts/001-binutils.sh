@@ -13,10 +13,16 @@ download_and_extract https://ftp.gnu.org/pub/gnu/binutils/binutils-"$BINUTILS_VE
 cd binutils-"$BINUTILS_VERSION"
 patch -p1 < ../../patches/binutils-"$BINUTILS_VERSION"-PSP.patch
 
+# overwrite the config.guess file so it knows about aarch64
+curl 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD' \
+  -H 'Accept: text/plain' \
+  --insecure \
+  -o config.guess
 
 # Create and enter the build directory.
 mkdir build-psp
 cd build-psp
+
 
 # Configure the build.
 CFLAGS="$CFLAGS -I/opt/local/include" \
