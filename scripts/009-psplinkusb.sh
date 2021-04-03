@@ -10,6 +10,12 @@
  ## Enter the source directory
  cd psplinkusb
 
+# overwrite the config.guess file so it knows about aarch64
+curl 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD' \
+  -H 'Accept: text/plain' \
+  --insecure \
+  -o config.guess
+
  ## Mac OS X fix
  if [ "$(uname)" == "Darwin" ]; then
    if [ -d /opt/local/include ] && [ -d /opt/local/lib ]; then # MacPorts

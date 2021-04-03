@@ -12,6 +12,12 @@ exit;
  cd insight-6.8
  patch -p1 < ../../patches/insight-6.8-PSP.patch
 
+# overwrite the config.guess file so it knows about aarch64
+curl 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD' \
+  -H 'Accept: text/plain' \
+  --insecure \
+  -o config.guess
+
  ## Create and enter the build directory.
  mkdir build-psp
  cd build-psp

@@ -11,6 +11,14 @@
  ## Enter the source directory.
  cd ebootsigner
  
+
+# overwrite the config.guess file so it knows about aarch64
+curl 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD' \
+  -H 'Accept: text/plain' \
+  --insecure \
+  -o config.guess
+
+
  ## Build and install
  make -j $(num_cpus)
  make -j $(num_cpus) install
